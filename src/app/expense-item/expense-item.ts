@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
+import { Expense } from '../models/expense';
+import { ExpenseService } from '../expense-service';
 
 @Component({
   selector: 'app-expense-item',
@@ -6,4 +8,7 @@ import { Component } from '@angular/core';
   templateUrl: './expense-item.html',
   styleUrl: './expense-item.css',
 })
-export class ExpenseItem {}
+export class ExpenseItem {
+  expenseService = inject(ExpenseService);
+  expense = input.required<Expense>();
+}

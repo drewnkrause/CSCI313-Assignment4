@@ -12,4 +12,5 @@ export type ExpenseCategory =
   | 'Utilities'
   | 'Shopping'
   | 'Travel'
-  | 'Food';
+  | 'Food'
+  | '';

@@ -1,1 +1,20 @@
-<p>expense-item works!</p>
+<div class="card shadow-sm mb-3">
+  <div class="card-body d-flex justify-content-between align-items-center">
+    <div>
+      <h5 class="mb-1">{{ expense().title }}</h5>
+      <small class="fw-semibold" [class]="expense().category.toLowerCase()">{{
+        expense().category
+      }}</small>
+    </div>
+    <div class="text-end">
+      <div
+        class="fw-bold text-success"
+        [class.text-success]="expense().amount <= 100"
+        [class.text-warning]="expense().amount > 100 && expense().amount <= 1000"
+        [class.text-danger]="expense().amount > 1000"
+      >
+        {{ expenseService.expenseFormat.format(expense().amount) }}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,16 @@
-<p>expense-list works!</p>
+<div class="container mt-4">
+  <h2 class="text-center mb-4">All Expenses</h2>
+  <div class="row justify-content-center">
+    @if (expenseService.transactionCount() > 0) {
+      <div class="col-md-8">
+        @for (expense of expenseService.expenses(); track $index) {
+          <app-expense-item [expense]="expense"></app-expense-item>
+        }
+      </div>
+    } @else {
+      <div class="alert alert-info text-center">
+        No expenses available. Please add a new expense.
+      </div>
+    }
+  </div>
+</div>
