@@ -21,13 +21,15 @@ export class ExpenseService {
     this.expenses().reduce((accumulator, current) => accumulator + current.amount, 0),
   );
 
-  highestExpense = computed<number>(() =>
-    Math.max(...this.expenses().map((value) => value.amount)),
-  );
-
   transactionCount = computed<number>(() => this.expenses().length);
 
-  averageExpense = computed<number>(() => this.totalExpenses() / this.transactionCount());
+  highestExpense = computed<number>(() =>
+    this.transactionCount() > 0 ? Math.max(...this.expenses().map((value) => value.amount)) : 0,
+  );
+
+  averageExpense = computed<number>(() =>
+    this.transactionCount() > 0 ? this.totalExpenses() / this.transactionCount() : 0,
+  );
 
   addExpense(title: string, amount: number, category: ExpenseCategory) {
     this.expenses.update((current) => [
@@ -48,4 +50,6 @@ export class ExpenseService {
   getExpenseById(id: string) {
     return this.expenses().find((value) => value.id === id);
   }
+
+  expenseFormat = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
 }
